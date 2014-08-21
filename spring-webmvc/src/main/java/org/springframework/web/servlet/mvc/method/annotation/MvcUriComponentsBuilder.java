@@ -40,7 +40,7 @@ import org.springframework.core.DefaultParameterNameDiscoverer;
 import org.springframework.core.MethodParameter;
 import org.springframework.core.ParameterNameDiscoverer;
 import org.springframework.core.annotation.AnnotationUtils;
-import org.springframework.objenesis.ObjenesisStd;
+//import org.springframework.objenesis.ObjenesisStd;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.util.Assert;
 import org.springframework.util.ObjectUtils;
@@ -69,6 +69,7 @@ import org.springframework.web.util.UriComponentsBuilder;
  * @author Rossen Stoyanchev
  * @since 4.0
  */
+// TODO: fei
 public class MvcUriComponentsBuilder extends UriComponentsBuilder {
 
 	/**
@@ -79,7 +80,7 @@ public class MvcUriComponentsBuilder extends UriComponentsBuilder {
 
 	private static final Log logger = LogFactory.getLog(MvcUriComponentsBuilder.class);
 
-	private static final ObjenesisStd objenesis = new ObjenesisStd(true);
+	//private static final ObjenesisStd objenesis = new ObjenesisStd(true);
 
 	private static final PathMatcher pathMatcher = new AntPathMatcher();
 
@@ -425,8 +426,9 @@ public class MvcUriComponentsBuilder extends UriComponentsBuilder {
 			enhancer.setInterfaces(new Class<?>[] {MethodInvocationInfo.class});
 			enhancer.setNamingPolicy(SpringNamingPolicy.INSTANCE);
 			enhancer.setCallbackType(org.springframework.cglib.proxy.MethodInterceptor.class);
-			Factory factory = (Factory) objenesis.newInstance(enhancer.createClass());
-			factory.setCallbacks(new Callback[] {interceptor});
+			//Factory factory = (Factory) objenesis.newInstance(enhancer.createClass()); // TODO: fei
+			Factory factory = null;
+			//factory.setCallbacks(new Callback[] {interceptor});
 			return (T) factory;
 		}
 	}

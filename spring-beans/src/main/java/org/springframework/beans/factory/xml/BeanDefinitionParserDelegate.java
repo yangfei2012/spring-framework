@@ -361,7 +361,7 @@ public class BeanDefinitionParserDelegate {
 		}
 		defaults.setLazyInit(lazyInit);
 
-		String merge = root.getAttribute(DEFAULT_MERGE_ATTRIBUTE);
+		String merge = root.getAttribute(DEFAULT_MERGE_ATTRIBUTE); // default-merge
 		if (DEFAULT_VALUE.equals(merge)) {
 			merge = parentDefaults != null ? parentDefaults.getMerge() : FALSE_VALUE;
 		}

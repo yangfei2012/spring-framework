@@ -254,13 +254,13 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	 * from a parent-child inheritance relationship) from the given bean
 	 * definition (presumably the child).
 	 * <ul>
-	 * <li>Will override beanClass if specified in the given bean definition.
-	 * <li>Will always take {@code abstract}, {@code scope},
+	 *   <li>Will override beanClass if specified in the given bean definition.
+	 *   <li>Will always take {@code abstract}, {@code scope},
 	 * {@code lazyInit}, {@code autowireMode}, {@code dependencyCheck},
 	 * and {@code dependsOn} from the given bean definition.
-	 * <li>Will add {@code constructorArgumentValues}, {@code propertyValues},
+	 *   <li>Will add {@code constructorArgumentValues}, {@code propertyValues},
 	 * {@code methodOverrides} from the given bean definition to existing ones.
-	 * <li>Will override {@code factoryBeanName}, {@code factoryMethodName},
+	 *   <li>Will override {@code factoryBeanName}, {@code factoryMethodName},
 	 * {@code initMethodName}, and {@code destroyMethodName} if specified
 	 * in the given bean definition.
 	 * </ul>

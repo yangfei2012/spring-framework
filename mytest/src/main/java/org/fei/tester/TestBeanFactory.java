@@ -23,9 +23,9 @@ public class TestBeanFactory {
 
     public static void main(String args[]) {
 
-
         DefaultListableBeanFactory beanRegistry = new DefaultListableBeanFactory();
 
+        /*
         // xml reader bind
         XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(beanRegistry);
         reader.loadBeanDefinitions("classpath:test.xml");
@@ -34,9 +34,9 @@ public class TestBeanFactory {
         //bindViaCode(beanRegistry);
 
         BeanFactory container = (BeanFactory)beanRegistry;
+        */
 
-
-        //ApplicationContext container = new ClassPathXmlApplicationContext("classpath:test.xml");
+        ApplicationContext container = new ClassPathXmlApplicationContext("classpath:test.xml");
 
         TProvider provider = (TProvider)container.getBean("tProvider");
 

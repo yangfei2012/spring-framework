@@ -775,7 +775,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 							"Cannot register bean definition [" + beanDefinition + "] for bean '" + beanName +
 							"': There is already [" + oldBeanDefinition + "] bound.");
 				}
-				else if (oldBeanDefinition.getRole() < beanDefinition.getRole()) {
+                else if (oldBeanDefinition.getRole() < beanDefinition.getRole()) {
 					// e.g. was ROLE_APPLICATION, now overriding with ROLE_SUPPORT or ROLE_INFRASTRUCTURE
 					if (this.logger.isWarnEnabled()) {
 						this.logger.warn("Overriding user-defined bean definition for bean '" + beanName +

@@ -321,6 +321,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 			currentResources = new HashSet<EncodedResource>(4);
 			this.resourcesCurrentlyBeingLoaded.set(currentResources);
 		}
+        // 这里是在加载文件之前先add到set中，查看是否循环设值，提前检测。
 		if (!currentResources.add(encodedResource)) {
 			throw new BeanDefinitionStoreException(
 					"Detected cyclic loading of " + encodedResource + " - check your import definitions!");
@@ -337,12 +338,10 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 			finally {
 				inputStream.close();
 			}
-		}
-		catch (IOException ex) {
+		} catch (IOException ex) {
 			throw new BeanDefinitionStoreException(
 					"IOException parsing XML document from " + encodedResource.getResource(), ex);
-		}
-		finally {
+		} finally {
 			currentResources.remove(encodedResource);
 			if (currentResources.isEmpty()) {
 				this.resourcesCurrentlyBeingLoaded.remove();
@@ -425,7 +424,8 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 	 * @see DocumentLoader#loadDocument
 	 */
 	protected Document doLoadDocument(InputSource inputSource, Resource resource) throws Exception {
-		return this.documentLoader.loadDocument(inputSource, getEntityResolver(), this.errorHandler,
+		return this.documentLoader.loadDocument(
+                inputSource, getEntityResolver(), this.errorHandler,
 				getValidationModeForResource(resource), isNamespaceAware());
 	}
 
@@ -523,8 +523,11 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 	 * Create the {@link XmlReaderContext} to pass over to the document reader.
 	 */
 	public XmlReaderContext createReaderContext(Resource resource) {
-		return new XmlReaderContext(resource, this.problemReporter, this.eventListener,
-				this.sourceExtractor, this, getNamespaceHandlerResolver());
+		return new XmlReaderContext(
+                resource, this.problemReporter, this.eventListener,
+				this.sourceExtractor,
+                this, // 传入this
+                getNamespaceHandlerResolver());
 	}
 
 	/**

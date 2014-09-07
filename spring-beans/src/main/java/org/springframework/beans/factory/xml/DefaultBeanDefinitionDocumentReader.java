@@ -118,10 +118,10 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 	 * @see #setEnvironment
 	 */
 	protected void doRegisterBeanDefinitions(Element root) {
-		// Any nested <beans> elements will cause recursion in this method. In
-		// order to propagate and preserve <beans> default-* attributes correctly,
-		// keep track of the current (parent) delegate, which may be null. Create
-		// the new (child) delegate with a reference to the parent for fallback purposes,
+		// Any nested <beans> elements will cause recursion in this method.
+		// In order to propagate and preserve <beans> default-* attributes correctly,
+		// keep track of the current (parent) delegate, which may be null.
+		// Create the new (child) delegate with a reference to the parent for fallback purposes,
 		// then ultimately reset this.delegate back to its original (parent) reference.
 		// this behavior emulates a stack of delegates without actually necessitating one.
 		BeanDefinitionParserDelegate parent = this.delegate;
@@ -184,14 +184,12 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 					Element ele = (Element) node;
 					if (delegate.isDefaultNamespace(ele)) {
 						parseDefaultElement(ele, delegate);
-					}
-					else {
+					} else {
 						delegate.parseCustomElement(ele);
 					}
 				}
 			}
-		}
-		else {
+		} else {
 			delegate.parseCustomElement(root);
 		}
 	}

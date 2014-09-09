@@ -13,7 +13,6 @@
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
-
     <!-- Root contextConfigLocation -->
     <context-param>
         <param-name>contextConfigLocation</param-name>

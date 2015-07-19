@@ -22,8 +22,8 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.cglib.proxy.Callback;
 import org.springframework.cglib.proxy.Enhancer;
 import org.springframework.cglib.proxy.Factory;
-//import org.springframework.objenesis.ObjenesisException;
-//import org.springframework.objenesis.ObjenesisStd;
+import org.springframework.objenesis.ObjenesisException;
+import org.springframework.objenesis.ObjenesisStd;
 
 /**
  * Objenesis based extension of {@link CglibAopProxy} to create proxy instances without
@@ -32,13 +32,12 @@ import org.springframework.cglib.proxy.Factory;
  * @author Oliver Gierke
  * @since 4.0
  */
-// TODO:fei
 @SuppressWarnings("serial")
 class ObjenesisCglibAopProxy extends CglibAopProxy {
 
 	private static final Log logger = LogFactory.getLog(ObjenesisCglibAopProxy.class);
 
-	//private final ObjenesisStd objenesis;
+	private final ObjenesisStd objenesis;
 
 
 	/**
@@ -47,14 +46,13 @@ class ObjenesisCglibAopProxy extends CglibAopProxy {
 	 */
 	public ObjenesisCglibAopProxy(AdvisedSupport config) {
 		super(config);
-		//this.objenesis = new ObjenesisStd(true);
+		this.objenesis = new ObjenesisStd(true);
 	}
 
 
 	@Override
 	@SuppressWarnings("unchecked")
 	protected Object createProxyClassAndInstance(Enhancer enhancer, Callback[] callbacks) {
-		/*
         try {
 			Factory factory = (Factory) this.objenesis.newInstance(enhancer.createClass());
 			factory.setCallbacks(callbacks);
@@ -67,8 +65,6 @@ class ObjenesisCglibAopProxy extends CglibAopProxy {
 			}
 			return super.createProxyClassAndInstance(enhancer, callbacks);
 		}
-		*/
-        return null;
 	}
 
 }

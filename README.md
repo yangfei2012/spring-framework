@@ -99,3 +99,22 @@ The Spring Framework is released under version 2.0 of the [Apache License][].
 [The Spring Blog]: http://spring.io/blog/
 [news feed]: http://spring.io/blog/category/news
 [Apache License]: http://www.apache.org/licenses/LICENSE-2.0
+
+
+# FEI
+## 关于构建spring：
+1. 先将javadoc的task屏蔽
+```java
+    //	task javadocJar(type: Jar) {
+    //		classifier = "javadoc"
+    //		from javadoc
+    //	}
+
+        artifacts {
+            archives sourcesJar
+            //archives javadocJar
+        }
+    }
+```
+2. 然后install：./gradlew install -x test （屏蔽test）
+3. 然后build：./gradlew build -x test
